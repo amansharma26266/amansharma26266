@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        .main {
+            width: 100vw;
+            height: 100vh;
+            text-align: center;
+            /* padding: 10px; */
+            background-color: rgb(15, 15, 14);
+            /* color: black; */
+        }
+
+        .center {
+            margin: auto;
+            /* display: grid; */
+            justify-content: center;
+
+            /* place-items: center; */
+
+            width: 50%;
+            height: 95%;
+            padding: 2px;
+            /* background-color: rgb(207, 207, 19); */
+
+        }
+
+        .first {
+            width: 100%;
+            /* height: 100%; */
+            background-color: navy;
+            /* width: 50%; */
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        .first button {
+            width: 100%;
+            padding: 8px;
+            background-color: navy;
+            color: white;
+        }
+        .first button:hover{
+            background-color:rgb(7, 1, 44) ;
+        }
+        .second {
+            width: 100%;
+            height: 95%;
+            padding: 2px 0;
+            background-color: lightgray;
+            color: white;
+            overflow: auto;
+            
+        }
+        .second::-webkit-scrollbar{
+            display: none;
+        }
+        .second p {
+            padding: 5px;
+            margin: 2px 0;
+            background-color: navy;
+            display: flex;
+            justify-content: space-between;
+        }
+        .second button{
+            background-color: green;
+            color: white;
+            padding:5px;
+            /* border: none; */
+            /* border-radius: 5px 15px 2px 12px solid black ; */
+            cursor: pointer;
+        }
+        .second button:hover{
+            background-color:rgb(17, 3, 60);
+            color: rgb(228, 228, 237);
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="main">
+            <div class="center">
+                <div class="first">
+                    <button onclick="create()">Create</button>
+                    <button onclick="deleteFirst()">Delete First</button>
+                    <button onclick="deleteAll()">Delete All</button>
+                </div>
+                <div class="second">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var center = document.querySelector(".center")
+        var first = document.querySelector(".first")
+        var second = document.querySelector(".second")
+        count=1
+        function create(){
+            var p = document.createElement("p")
+            p.innerHTML=` This is Paragraph p${count}<button onclick="deleteItem('p${count}')">delete</button>`
+            p.id=(`p${count}`)
+            count++
+            second.appendChild(p)
+
+        }
+        function deleteItem(id){
+            var p =document.getElementById(id)
+            second.removeChild(p)
+            
+          
+        }
+        function deleteFirst(id){
+            if(second.childNodes[1])
+            second.removeChild(second.childNodes[1])
+
+        }
+        function deleteAll(){
+           center.removeChild(second)
+           second=document.createElement("div")
+           second.classList.add("second")
+           center.appendChild(second)
+        }
+    </script>
+</body>
+
+</html>
